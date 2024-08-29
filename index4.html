@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        #mulai {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        #timer {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: #fff;
+            cursor: pointer;
+            width: 15%;
+        }
+
+        button:hover {
+            background-color: #3e8e41;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .button-container {
+            margin-bottom: 20px;
+        }
+
+        .button-container button {
+            display: block;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="mulai">Hitung Mundur </div>
+    <div id="timer">10 </div>
+    <div class="button-container">
+        <button id="mulai-button">Mulai</button>
+        <button id="berhenti-button">Berhenti</button>
+    </div>
+    <script>
+        let waktuInterval;
+        let waktu = 10; 
+        
+        function mulaiWaktu() {
+            waktuInterval = setInterval(() => {
+                document.getElementById("mulai-button").disabled = true;
+                document.getElementById("berhenti-button").disabled = false;
+                waktu--; 
+                document.getElementById("timer").innerHTML = `${waktu}`;
+                if (waktu <= 0) {
+                    clearInterval(waktuInterval);
+                    document.getElementById("timer").innerHTML ="<span style=color:red;>Waktu Habis</span>";
+                }
+            }, 1000); 
+        }
+        
+        function berhentiWaktu() {
+            clearInterval(waktuInterval);
+            document.getElementById("mulai-button").disabled = false;
+            document.getElementById("berhenti-button").disabled = true;
+            document.getElementById("mulai").innerHTML = `Hitungan ke ${waktu} Berhenti `;
+        }
+        
+        document.getElementById("mulai-button").addEventListener("click", mulaiWaktu);
+        document.getElementById("berhenti-button").addEventListener("click", berhentiWaktu);
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <label for="kategori">Ada Rekomendasi</label><br>
+        
+        <select id="kategori" name="kategori" required onchange="handleKategoriChange(this.value)">
+            <option value="Tidak">Tidak</option>
+            <option value="Ada">Ada</option>
+        </select><br><br>
+
+        <div id="name_wrapper" style="display: none;">
+            <label for="nama">Nama Lengkap Perekomenasi*</label><br>
+            <input type="text" id="nama" name="nama_lengkap"><br><br>
+        
+            <label for="jabatan">Kategori Perekomenasi*</label><br>
+            <select id="jabatan" name="jabatan" onchange="handleJabatanChange(this.value)">
+                <option value="Pekerja BRI">Pekerja BRI</option>
+                <option value="Purnabakti">Purnabakti</option>
+            </select><br><br>
+
+            <label for="id_pegawai">Nomor ID Pegawai/KTA/PN/MP*</label><br>
+            <input type="text" id="id_pegawai" name="nomor_id"><br><br>
+
+            <div id="jabatan_wrapper">
+                <label for="jabatan_perekomenasi">Jabatan Perekomenasi</label><br>
+                <input type="text" id="jabatan_perekomenasi" name="jabatan_perekomenasi"><br><br>
+            </div>
+        </div>
+        
+        <input type="submit" value="Selanjutnya">
+    </form>
+    
+    <script>
+        function handleKategoriChange(value) {
+            const nameWrapper = document.getElementById("name_wrapper");
+
+            if (value === "Ada") {
+                nameWrapper.style.display = "block";
+            } else {
+                nameWrapper.style.display = "none";
+            }
+        }
+
+        function handleJabatanChange(value) {
+            const jabatanWrapper = document.getElementById("jabatan_wrapper");
+
+            if (value === "Purnabakti") {
+                jabatanWrapper.style.display = "none";
+            } else {
+                jabatanWrapper.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
